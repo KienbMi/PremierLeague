@@ -1,0 +1,53 @@
+﻿<controls:MetroWindow x:Class="PremierLeague.Wpf.Views.AddGameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PremierLeague.Wpf.Views"
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        mc:Ignorable="d"
+        Title="AddGameWindow" Height="220" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Round:" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Round, UpdateSourceTrigger=PropertyChanged}" Width="80" HorizontalAlignment="Left"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Hometeam:" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="2" Grid.Column="2"  
+                  ItemsSource="{Binding Teams}" 
+                  DisplayMemberPath="Name" 
+                  SelectedItem="{Binding SelectedHomeTeam}" Width="250"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Hometeam:" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="3" Grid.Column="2"  
+                  ItemsSource="{Binding Teams}" 
+                  DisplayMemberPath="Name" 
+                  SelectedItem="{Binding SelectedGuestTeam}" Width="250"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" Text="Homegoals:" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding HomeGoals, UpdateSourceTrigger=PropertyChanged}" Width="80" HorizontalAlignment="Left"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" Text="Guestgoals:" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding GuestGoals, UpdateSourceTrigger=PropertyChanged}" Width="80" HorizontalAlignment="Left"/>
+        <Button Grid.Row="6" Grid.Column="2" HorizontalAlignment="Right" Margin="5,5,0,0" Width="80" Command="{Binding CmdSave}">Save</Button>
+        <Label Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2"
+               Style="{StaticResource ResourceKey=ErrorCaptionStyle}"
+               Content="{Binding DbError}"/>
+    </Grid>
+</controls:MetroWindow>
