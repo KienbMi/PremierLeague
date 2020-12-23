@@ -56,21 +56,15 @@ namespace PremierLeague.Persistence
         {
             if (entity is Game game)
             {
-                //modified
                 List<string> viewObjects = new List<string>();  
                 if (await _dbContext.Games.AnyAsync(_ => _.Id != game.Id && _.Round == game.Round && (_.HomeTeam.Name == game.HomeTeam.Name || _.GuestTeam.Name == game.HomeTeam.Name)))
                 {
-                    //modified
                     viewObjects.Add("SelectedHomeTeam");
-                    //throw new ValidationException("Team hat in Runde bereits gespielt!", null, new string[] { "SelectedHomeTeam" });
                 }
                 if (await _dbContext.Games.AnyAsync(_ => _.Id != game.Id &&_.Round == game.Round && (_.HomeTeam.Name == game.GuestTeam.Name || _.GuestTeam.Name == game.GuestTeam.Name)))
                 {
-                    //modified
                     viewObjects.Add("SelectedGuestTeam");
-                    //throw new ValidationException("Team hat in Runde bereits gespielt!", null, new string[] { "SelectedGuestTeam" });
                 }
-                //modified
                 if (viewObjects.Count > 0)
                 {
                     throw new ValidationException("Team hat in Runde bereits gespielt!", null, viewObjects);
